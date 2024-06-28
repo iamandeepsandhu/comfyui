@@ -1,0 +1,18 @@
+services:
+  comfyui:
+    init: true
+    container_name: comfyui
+    networks:
+      - default
+    image: "iamandeepsandhu/my-comfyui:latest"
+    ports:
+      - "8188:8188"
+    security_opt:
+      - "label=type:nvidia_container_t"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              device_ids: ["0"]
+              capabilities: [gpu]
